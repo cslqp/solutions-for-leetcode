@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {  //滑动窗口
+        int n = s.size();
+        int maxn = 0;
+        int left = 0,right = 0;               //分别记录窗口左右两边
+        for(int i = left; i < n;++i){
+            char t = s[i];
+            for(int j = left;j <= right;++j){
+                if(t == s[j] && i != left){
+                    left = j + 1;
+                }
+            }
+            right = i;
+        if(right - left + 1 > maxn && right >= left){   //更新最大值
+            maxn = right - left + 1;
+        }
+    }
+        if(n == 1){
+            maxn = 1;
+        }
+        return maxn;
+    }
+};
